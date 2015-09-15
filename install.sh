@@ -12,7 +12,7 @@ echo "======== Titanium SDK file: $TI_SDK_FILE"
 # Install the sdk
 echo "======== Install Titanium SDK"
 titanium login travisci@appcelerator.com travisci
-curl -o $TI_SDK_FILE http//builds.appecelerator/mobile/master/$TI_SDK_FILE
+curl -o $TI_SDK_FILE http://builds.appecelerator/mobile/master/$TI_SDK_FILE
 titanium sdk install $TI_SDK_FILE --no-progress-bars
 
 # Install Android

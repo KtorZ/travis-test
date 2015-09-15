@@ -11,7 +11,7 @@ env:
         - ANDROID_HOME=${PWD}
         - ANDROID_SDK=${ANDROID_HOME}/android-sdk-macosx
         - PATH=${PATH}:${ANDROID_HOME}/tools:${ANDROID_HOME}/platform-tools
-#        - secure GENERATE_SECURE_TOKEN_FOR_CLOUDINARY
+        - secure "ZDfUYUgadBn6lpODDJX6vXV8b++btFL7CF/0DNX9jqv50N04hs/Ko3/ghOM1G90ZMGdSooZ3qFkIyHccBySKO3DFn3KEFI3QE9kLmlS3YlPIvZwLOczasmJ+wamyk34e9jwoGAl2MjBDFzxXNJFwgGbHRWcCvAiJU5cmfVOZNtEsXZ9rnD7w27z2Jk65NqpEqtRub6RJ6T2+vGzcfWIAH1hqb3lQBmrP5vMe6vN2U7XdrCy7J7tRvlOv8bmdYfrOOVGjkEWsljFvhBYW/sYhsNwMDo1yx4sBQVmHNTp6Q3cndUYb9P6U8P36N5zsBpCWYM1Wm/zxtioL7pvAvsZcRNHxUQ/DYCIAbLv53WpCRSnMSIxsdlS5JgSJqps/9rKDHLP9CbO4Rh/V0a3xvjMvgNpsT3vcWco10cDtRKXN4XHM1DbTIfrH5OkGdo+i5AM/r4fkGPJ7OSc4QF+X67nlLvCa9HqbfrNz0pdbYMDuLNwT4i9SM4dmgQ5jgm0jStZOjqheQT1w42SsGrM0ZkZHcHNCwO6o2e9sNF9hUqlGuyrOZfbEzWbHNWVZUj8ZWpWl00Xvt5X8kzg2ak+7T1sJ1qYVtAfStoyR7iQVWTxPIg4MMk4K1156GRqvbBxoShINkto0wG3lghYouDXiygzX4O+b7zzG2/sFf/corAV9tR0="
 
 matrix:
     fast_finish: true
@@ -24,3 +24,6 @@ install:
 
 script:
     - titanium build -p ${PLATFORM} --build-only --log-level warn
+
+after_script:
+    - source deploy.sh

@@ -29,7 +29,7 @@ install:
     - gulp 'install:android_sdk'
 
 before_script:
-    - gulp 'config:bump_version'
+#    - gulp 'config:bump_version'
 
 script:
-    - gulp 'build'
+    - gulp 'build:release'

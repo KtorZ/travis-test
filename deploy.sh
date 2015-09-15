@@ -13,7 +13,7 @@ echo $VERSION > test
 # Set up a bit of configuration
 git config --local user.name $GH_USER
 git config --local user.username $GH_USER
-git remote add deploy https://$GH_REMOTE:${GH_TOKEN}@github.com/$GH_USER/$GH_REPO.git
+git remote add deploy https://$GH_USER:${GH_TOKEN}@github.com/$GH_REMOTE/$GH_REPO.git
 
 # Do the release commit
 git checkout -b "release-$VERSION"

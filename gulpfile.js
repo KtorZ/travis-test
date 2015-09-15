@@ -13,10 +13,18 @@ var gulp = require('gulp'),
         cloudinary: require('cloudinary')
     },
     GULP_DIR = './.gulp';
-plugins.utils.env.config = JSON.parse(plugins.fs.readFileSync(plugins.path.join(process.cwd(), 'app', 'config.json')));  
+
+try {
+    plugins.utils.env.config = JSON.parse(plugins.fs.readFileSync(
+        plugins.path.join(process.cwd(), 'app', 'config.json')));
+} catch (e) {
+    plugins.utils.log(plugins.utils.colors.red.bold("Unable to find / parse config.json"));
+    plugins.utils.env.config = {};
+}
 
 /** Require all tasks defined in several gulpfiles **/
 var gulpfiles = plugins.fs.readdirSync(GULP_DIR);
 _.each(gulpfiles, function (gulpfile) {
+    if (!gulpfile.match(/.js$/)) { return; }
     require(GULP_DIR + '/' + plugins.path.basename(gulpfile, '.js'))(gulp, plugins);
 });

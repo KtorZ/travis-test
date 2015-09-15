@@ -30,6 +30,25 @@ module.exports = function (gulp, plugins) {
         });
     });
 
+    gulp.task('build:release', function (done) {
+        /* Just a simple build */
+        process.env.PLATFORM = process.env.PLATFORM || (plugins.utils.env.android ? 'android' : 'ios');
+
+        var build = plugins.exec('ti clean && ti build -p ' + process.env.PLATFORM +
+                ' --build-only --log-level warn', function (err) {
+            plugins.utils.log(plugins.utils.colors.red(err.message));
+            process.exit(1);
+        });
+
+        build.stdout.on('data', function (data) {
+            plugins.utils.log(data);
+        });
+
+        build.stdout.on('error', function (err) {
+            plugins.utils.log(plugins.utils.colors.red.bold(err));
+            process.exit(1);
+        });
+    });
 
     gulp.task('build:calabash', ['clean'], function (done) {
         process.env.PLATFORM = process.env.PLATFORM || (plugins.utils.env.android ? 'android' : 'ios');

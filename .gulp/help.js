@@ -25,12 +25,21 @@ module.exports = function (gulp, plugins) {
         /** Install task **/
         plugins.utils.log(plugins.utils.colors.white.bold("## Install Tasks"));
         plugins.utils.log("  " + plugins.utils.colors.yellow("install:android_sdk"));
-        plugins.utils.log("  Install and configure android sdk; PATH, ANDROID_HOME and ANDROID_SDK should have been set.");
+        plugins.utils.log("  Install and configure android sdk; PATH, ANDROID_HOME and ANDROID_SDK should have been set.\n");
+
+        /** Build Tasks*/
+        plugins.utils.log(plugins.utils.colors.white.bold("## Build Tasks"));
+        plugins.utils.log("  " + plugins.utils.colors.yellow("build:release"));
+        plugins.utils.log("  build the app for the defined platform and package it to a dist folder");
+        plugins.utils.log("  " + plugins.utils.colors.yellow("build:calabash"));
+        plugins.utils.log("  build the app in order to be used with calabash tests");
+        plugins.utils.log("  " + plugins.utils.colors.yellow("build:appify"));
+        plugins.utils.log("  build the app with tishadow packaged\n");
 
         /** Start task*/
         plugins.utils.log(plugins.utils.colors.white.bold("## Start Tasks"));
         plugins.utils.log("  " + plugins.utils.colors.yellow("start:emulator"));
-        plugins.utils.log("  Run, wait for and unlock the android emulator.");
+        plugins.utils.log("  Run, wait for and unlock the android emulator.\n");
 
         /** Clean Tasks **/
         plugins.utils.log(plugins.utils.colors.white.bold("## Clean Tasks"));

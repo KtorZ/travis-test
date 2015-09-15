@@ -25,15 +25,17 @@ titanium sdk install $TI_SDK_FILE --no-progress-bars
 
 # Install Android
 if [ $PLATFORM = "android" ]; then
-    echo "======== Install Android SDK v $ANDROID_VERSION"
+    echo "======== Install Android SDK v$ANDROID_VERSION"
     curl -o $ANDROID_SDK_FILE http://dl.google.com/android/${ANDROID_SDK_FILE}
     unzip -q $ANDROID_SDK_FILE -d $ANDROID_HOME
     titanium config android.sdkPath $ANDROID_SDK
+    echo yes | android -s update sdk --no-ui --all --filter android-8
+    echo yes | android -s update sdk --no-ui --all --filter android-10
+    echo yes | android -s update sdk --no-ui --all --filter android-$ANDROID_VERSION
     echo yes | android -s update sdk --no-ui --all --filter sys-img-armeabi-v7a-android-$ANDROID_VERSION
     echo yes | android -s update sdk --no-ui --all --filter addon-google_apis-google-$ANDROID_VERSION
-    echo yes | android -s update sdk --no-ui --all --filter android-$ANDROID_VERSION
     echo yes | android -s update sdk --no-ui --all --filter extra-android-support
-    echo yes | android -s update sdk --no-ui --all --filter build-tools-22.0.0
     echo yes | android -s update sdk --no-ui --all --filter tools
     echo yes | android -s update sdk --no-ui --all --filter platform-tools
+    echo yes | android -s update sdk --no-ui --all --filter build-tools-23.0.0
 fi

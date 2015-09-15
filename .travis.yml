@@ -6,9 +6,9 @@ branches:
 env:
     matrix:
         - PLATFORM="ios"
-        - PLATFORM="android" ANDROID_VERSION="19"
+        - PLATFORM="android" ANDROID_VERSION="21"
     global:
-        - ANDROID_SDK_FILE="android-sdk_r24.1.2-macosx.zip"
+        - ANDROID_SDK_FILE="android-sdk_r24.3.4-macosx.zip"
         - ANDROID_HOME=${PWD}
         - ANDROID_SDK=${ANDROID_HOME}/android-sdk-macosx
         - PATH=${PATH}:${ANDROID_SDK}/tools:${ANDROID_SDK}/platform-tools
@@ -19,7 +19,7 @@ env:
 matrix:
     fast_finish: true
     allow_failures:
-        - env: PLATFORM="android" ANDROID_VERSION="19"
+        - env: PLATFORM="android" ANDROID_VERSION="21"
 
 before_install:
     - curl -o install.sh ${CI_REPO}/install.sh

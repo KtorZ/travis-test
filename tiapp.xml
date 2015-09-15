@@ -38,6 +38,9 @@
 		</plist>
 	</ios>
 	<android xmlns:android="http://schemas.android.com/apk/res/android">
+        <manifest>
+            <uses-sdk android:minSdkVersion="21" android:targetSdkVersion="21"/>
+        </manifest>
 	</android>
 	<mobileweb>
 		<precache>
@@ -57,7 +60,7 @@
 		<target device="mobileweb">true</target>
 		<target device="windows">true</target>
 	</deployment-targets>
-	<sdk-version>4.1.0</sdk-version>
+	<sdk-version>4.1.0.GA</sdk-version>
 <plugins><plugin version="1.0">ti.alloy</plugin>
 </plugins>
 </ti:app>

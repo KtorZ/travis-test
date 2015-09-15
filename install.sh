@@ -17,10 +17,6 @@ TI_SDK_BUILD_VERSION=$(echo $TI_SDK_FILE | grep -oE "\d+\.\d+\.\d+\.?(GA)?\.\w+"
 source bump_version.sh sdk $TI_SDK_BUILD_VERSION
 echo "======== Titanium SDK build version: $TI_SDK_BUILD_VERSION"
 
-echo $TI_SDK_FILE
-echo $TI_SDK_BUILD_VERSION
-exit 0
-
 # Install the sdk
 echo "======== Install Titanium SDK"
 titanium login travisci@appcelerator.com travisci

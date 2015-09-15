@@ -14,8 +14,12 @@ echo "======== Titanium SDK file: $TI_SDK_FILE"
 
 # Now, define the correct grabbed version for the build
 TI_SDK_BUILD_VERSION=$(echo $TI_SDK_FILE | grep -oE "\d+\.\d+\.\d+\.?(GA)?\.\w+")
-source bump_version sdk $TI_SDK_BUILD_VERSION
+source bump_version.sh sdk $TI_SDK_BUILD_VERSION
 echo "======== Titanium SDK build version: $TI_SDK_BUILD_VERSION"
+
+echo $TI_SDK_FILE
+echo $TI_SDK_BUILD_VERSION
+exit 0
 
 # Install the sdk
 echo "======== Install Titanium SDK"
@@ -26,9 +30,9 @@ titanium sdk install $TI_SDK_FILE --no-progress-bars
 # Install Android
 if [ $PLATFORM = "android" ]; then
     echo "======== Install Android SDK v $ANDROID_VERSION"
-    titanium config android.sdkPath $ANDROID_HOME
     curl -o $ANDROID_SDK_FILE http://dl.google.com/android/${ANDROID_SDK_FILE}
     unzip -q $ANDROID_SDK_FILE -d $ANDROID_HOME
+    titanium config android.sdkPath $ANDROID_SDK
     echo yes | android -s update sdk --no-ui --all --filter sys-img-armeabi-v7a-android-$ANDROID_VERSION
     echo yes | android -s update sdk --no-ui --all --filter addon-google_apis-google-$ANDROID_VERSION
     echo yes | android -s update sdk --no-ui --all --filter android-$ANDROID_VERSION

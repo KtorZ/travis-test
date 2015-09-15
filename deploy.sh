@@ -1,6 +1,7 @@
 #!/bin/sh
 
 GH_REPO=$(basename `git rev-parse --show-toplevel`)
+GH_REMOTE=$(git remote -v | head -n 1 | sed "s/.*github.com\/\([a-zA-Z_-]*\)\/.*/\1/g")
 
 PATCH=$(git log --oneline | grep -c "\[ *patch *\]")
 MINOR=$(git log --oneline | grep -c "\[ *minor *\]")
@@ -12,7 +13,7 @@ echo $VERSION > test
 # Set up a bit of configuration
 git config --local user.name $GH_USER
 git config --local user.username $GH_USER
-git remote add deploy https://$GH_USER:${GH_TOKEN}@github.com/$GH_USER/$GH_REPO.git
+git remote add deploy https://$GH_REMOTE:${GH_TOKEN}@github.com/$GH_USER/$GH_REPO.git
 
 # Do the release commit
 git checkout -b "release-$VERSION"

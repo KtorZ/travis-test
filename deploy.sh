@@ -1,14 +1,13 @@
 #!/bin/sh
 
+# Only if needed
+if ./ignore.sh; then exit 0; fi
+
+# Retrieve repo info
 GH_REPO=$(basename `git rev-parse --show-toplevel`)
 GH_REMOTE=$(git remote -v | head -n 1 | sed "s/.*github.com\/\([a-zA-Z_-]*\)\/.*/\1/g")
 
-PATCH=$(git log --oneline | grep -c "\[ *patch *\]")
-MINOR=$(git log --oneline | grep -c "\[ *minor *\]")
-MAJOR=$(git log --oneline | grep -c "\[ *major *\]")
-VERSION="$MAJOR.$MINOR.$PATCH"
-
-echo $VERSION > test
+echo "patate" > test
 
 # Set up a bit of configuration
 git config --local user.name $GH_USER

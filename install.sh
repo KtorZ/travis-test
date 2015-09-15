@@ -1,5 +1,8 @@
 #!/bin/sh
 
+# Only if needed
+if ./ignore.sh; then exit 0; fi
+
 # Extract SDK version from tiapp.xml
 TI_SDK_VERSION=$(grep tiapp.xml -e "<sdk-version>" | grep -oE "\d+\.\d+\.\d+")
 echo "======== Titanium SDK version: $TI_SDK_VERSION"
@@ -11,7 +14,7 @@ echo "======== Titanium SDK file: $TI_SDK_FILE"
 
 # Now, define the correct grabbed version for the build
 TI_SDK_BUILD_VERSION=$(echo $TI_SDK_FILE | grep -oE "\d+\.\d+\.\d+\.?(GA)?\.\w+")
-sed -i "" "/<sdk-version>.*<\/sdk-version>/s/[0-9].[0-9].[0-9].\(GA\)*/$TI_SDK_BUILD_VERSION/g" tiapp.xml
+source bump_version sdk $TI_SDK_BUILD_VERSION
 echo "======== Titanium SDK build version: $TI_SDK_BUILD_VERSION"
 
 # Install the sdk

@@ -18,13 +18,14 @@ before_install:
     - export ANDROID_HOME=$PWD/android-sdk-macosx
     - export ANDROID_SDK=$ANDROID_HOME
     - export PATH=${PATH}:${ANDROID_HOME}/tools:${ANDROID_HOME}/platform-tools
+    - export TI_SDK_VERSION=$(grep tiapp.xml -e "<sdk-version>" | grep -oE "\d+.\d+.\d+(.GA)?")
 
 install:
     - npm install -g titanium alloy gulp appcelerator
     - npm install
 
     - titanium login travisci@appcelerator.com travisci
-    - appc ti sdk install latest --no-progress-bars
+    - appc ti sdk install $TI_SDK_VERSION --no-progress-bars
 
     - gulp 'install:android_sdk'
 

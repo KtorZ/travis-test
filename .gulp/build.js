@@ -36,8 +36,13 @@ module.exports = function (gulp, plugins) {
 
         var build = plugins.exec('ti clean && ti build -p ' + process.env.PLATFORM +
                 ' --build-only --log-level warn', function (err) {
-            plugins.utils.log(plugins.utils.colors.red(err.message));
-            process.exit(1);
+            if (err) {
+                plugins.utils.log(plugins.utils.colors.red(err.message));
+                process.exit(1);
+            } else {
+                plugins.utils.log(plugins.utils.colors.green("Build Successful"));
+                done();
+            }
         });
 
         build.stdout.on('data', function (data) {

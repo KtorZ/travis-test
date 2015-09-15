@@ -4,8 +4,27 @@ branches:
     - develop
 
 env:
+    matrix:
+        - PLATFORM="ios"
+        - PLATFORM="android" ANDROID_VERSION="19"
     global:
+        - ANDROID_SDK_FILE="android-sdk_r24.3.4-macosx.zip"
+        - ANDROID_HOME=${PWD}
+        - ANDROID_SDK=${ANDROID_HOME}/android-sdk-macosx
+        - PATH=${PATH}:${ANDROID_SDK}/tools:${ANDROID_SDK}/platform-tools
         - secure: "szF/950c0AF+Lko7zwawFx1MvgCicSCo+J/G/R/Ofxs0Ieo0130YSg2sF5PEi6f4oW6rGlOOtooCdct+yweieiKmer5hUaoBTsLbsZUsrzZDiWDf2xWFM0EAC2kgoCMb8onJZnN7gWc7pjI2Q155GxJpciXQGgRWiFVnszHS0534g5rTHCR22cW0auaFdRsKLm99zlhc4hlM6lSLXh8nHjCK8kUd6f6uO81nIeypOP1urFaIMdVtABdEUApQnOrCQgiPcp0aqA9qQZYZCJTyClsBGUlQfVSdWUvVXh+nOLALi0Xw0m159Y4vDsC5JaiOrhHTDy5ZpIVJj+h9HAFfJ49wjaXOrgrbpfaibkKuHSXVhmGnZtrgvs5U/yadMWzHqPHJkcMxVax+t1doQPZy1MeZ4qX6I69qVN+RirhV7WUEbU7/PyU8DuOqyMKDXtNBuOH03lVWaZm/8Go799n6OHHhqnNPVwCLnE0xQ81+WDGp4gYmO/k0bm/gQJwSeEu9HjdXDVe77ZUvLrqKNj0jHADKISW7UlMliNRRRpH0f8+LJmEFsiubLI9quxH0yRM85Y40lD48MGfWAvn09oirNCDJLpXwykrYjMXmb+F0+WrU/Jec5YiHQujWXYUaRX1CBdhN/Q8NMGfX1gW9AcSCun2Z6EAD/APJJGLCqMsUuq0="
 
+matrix:
+    fast_finish: true
+    allow_failures:
+        - env: PLATFORM="android" ANDROID_VERSION="19"
+
+install:
+    - npm install -g titanium alloy
+    - source install.sh
+
 script:
+    - titanium build -p ${PLATFORM} --build-only --log-level warn
+
+after_script:
     - source deploy.sh

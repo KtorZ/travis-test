@@ -8,17 +8,24 @@ env:
         - PLATFORM="ios"
         - PLATFORM="android" ANDROID_VERSION="19"
     global:
-        - ANDROID_SDK_FILE="android-sdk_r24.3.4-macosx.zip"
+        - ANDROID_SDK_FILE="android-sdk_r24.1.2-macosx.zip"
         - ANDROID_HOME=${PWD}
         - ANDROID_SDK=${ANDROID_HOME}/android-sdk-macosx
         - PATH=${PATH}:${ANDROID_SDK}/tools:${ANDROID_SDK}/platform-tools
         - GH_USER="TravisTheSmiths"
+        - CI_REPO="https://raw.githubusercontent.com/TheSmiths/continuous-integration/master"
         - secure: "1Slzgn4x+bJIvepdrznuM28GcwwjmUg2/lIi9nuedA+WhziSEgEW1NBecLC2TxH2V/VZnDQb6ikhPn8RzyoNgZW7S3B3Drcgjx2sCAadiwzFnrRIJBLY2A65PxZPEfEa25+88ROPfAmYlH94uRnpvchcc/NJJmRQO4VdlY0XFkanyU/PvvFb7y6YTqFtkRFqRQWaes3f59OgGd3bwKVONWdquDaTd4eUR6mg/wXrflo4MmTMhfB2T+8H0wrnankHBlu+hgwiNDM1jGsdbDPp44RvHpGQcXewruhn/jkE7ep5oAQ+2Caj7mHwqF0HeZoADUfZqgjkzGqfhqi542Q87KTM4aPH9H/dwpA5iZM6gkcSe5P3PUQ6DBgm4fDQiNCkydjGnhSKOmhrdGWL+Kl5hFtaKKUSoTAt5ND/RK+rwyvz2ZD6n1d5O8HL3nnsqC6dFStX96Y3oSwsLnyuU0siEcbJ8NonSU3NThdc4c8ISXG9jkwJa/jLXatGN2SrHuaUXVwcA4C4pAt+Adq5fW8keqCEMWXKQQvv8iNH4OkO3Rs+8kezG0gG7N5O+zpDK3gngk0pKghNQLVMSGMcnM4Zw6sLYBZxCSOEEAlpP0m3uWErO560Mk4mCsBrbYQuWrAZ48Ovl/+qaY2lsaCKEuPumNmjjopgI+7zcXbXZKQmbzg="
 
 matrix:
     fast_finish: true
     allow_failures:
         - env: PLATFORM="android" ANDROID_VERSION="19"
+
+before_install:
+    - curl -o install.sh ${CI_REPO}/install.sh
+    - curl -o ignore.sh ${CI_REPO}/ignore.sh
+    - curl -o release.sh ${CI_REPO}/release.sh
+    - curl -o bump_version.sh ${CI_REPO}/bump_version.sh
 
 install:
     - npm install -g titanium alloy
@@ -29,4 +36,4 @@ script:
     - titanium build -p ${PLATFORM} --build-only --log-level warn
 
 after_success:
-    - source deploy.sh
+    - source release.sh

@@ -20,7 +20,7 @@ before_install:
     - export PATH=${PATH}:${ANDROID_HOME}/tools:${ANDROID_HOME}/platform-tools
 
 install:
-    - npm install -g titanium alloy gulp appc
+    - npm install -g titanium alloy gulp appcelerator
     - npm install
 
     - titanium login travisci@appcelerator.com travisci

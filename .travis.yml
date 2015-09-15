@@ -1,17 +1,18 @@
 language: objective-c
 branches:
     only:
-        - develop
+    - develop
+
 env:
     matrix:
         - PLATFORM="ios"
         - PLATFORM="android" ANDROID_VERSION="19"
     global:
-        - ANDROID_SDK_FILE="android-sdk_r24.3.4-macosx.zip" # From dl.google.com
+        - ANDROID_SDK_FILE="android-sdk_r24.3.4-macosx.zip"
         - ANDROID_HOME=${PWD}
         - ANDROID_SDK=${ANDROID_HOME}/android-sdk-macosx
         - PATH=${PATH}:${ANDROID_HOME}/tools:${ANDROID_HOME}/platform-tools
-        - secure "ZDfUYUgadBn6lpODDJX6vXV8b++btFL7CF/0DNX9jqv50N04hs/Ko3/ghOM1G90ZMGdSooZ3qFkIyHccBySKO3DFn3KEFI3QE9kLmlS3YlPIvZwLOczasmJ+wamyk34e9jwoGAl2MjBDFzxXNJFwgGbHRWcCvAiJU5cmfVOZNtEsXZ9rnD7w27z2Jk65NqpEqtRub6RJ6T2+vGzcfWIAH1hqb3lQBmrP5vMe6vN2U7XdrCy7J7tRvlOv8bmdYfrOOVGjkEWsljFvhBYW/sYhsNwMDo1yx4sBQVmHNTp6Q3cndUYb9P6U8P36N5zsBpCWYM1Wm/zxtioL7pvAvsZcRNHxUQ/DYCIAbLv53WpCRSnMSIxsdlS5JgSJqps/9rKDHLP9CbO4Rh/V0a3xvjMvgNpsT3vcWco10cDtRKXN4XHM1DbTIfrH5OkGdo+i5AM/r4fkGPJ7OSc4QF+X67nlLvCa9HqbfrNz0pdbYMDuLNwT4i9SM4dmgQ5jgm0jStZOjqheQT1w42SsGrM0ZkZHcHNCwO6o2e9sNF9hUqlGuyrOZfbEzWbHNWVZUj8ZWpWl00Xvt5X8kzg2ak+7T1sJ1qYVtAfStoyR7iQVWTxPIg4MMk4K1156GRqvbBxoShINkto0wG3lghYouDXiygzX4O+b7zzG2/sFf/corAV9tR0="
+        - secure: "szF/950c0AF+Lko7zwawFx1MvgCicSCo+J/G/R/Ofxs0Ieo0130YSg2sF5PEi6f4oW6rGlOOtooCdct+yweieiKmer5hUaoBTsLbsZUsrzZDiWDf2xWFM0EAC2kgoCMb8onJZnN7gWc7pjI2Q155GxJpciXQGgRWiFVnszHS0534g5rTHCR22cW0auaFdRsKLm99zlhc4hlM6lSLXh8nHjCK8kUd6f6uO81nIeypOP1urFaIMdVtABdEUApQnOrCQgiPcp0aqA9qQZYZCJTyClsBGUlQfVSdWUvVXh+nOLALi0Xw0m159Y4vDsC5JaiOrhHTDy5ZpIVJj+h9HAFfJ49wjaXOrgrbpfaibkKuHSXVhmGnZtrgvs5U/yadMWzHqPHJkcMxVax+t1doQPZy1MeZ4qX6I69qVN+RirhV7WUEbU7/PyU8DuOqyMKDXtNBuOH03lVWaZm/8Go799n6OHHhqnNPVwCLnE0xQ81+WDGp4gYmO/k0bm/gQJwSeEu9HjdXDVe77ZUvLrqKNj0jHADKISW7UlMliNRRRpH0f8+LJmEFsiubLI9quxH0yRM85Y40lD48MGfWAvn09oirNCDJLpXwykrYjMXmb+F0+WrU/Jec5YiHQujWXYUaRX1CBdhN/Q8NMGfX1gW9AcSCun2Z6EAD/APJJGLCqMsUuq0="
 
 matrix:
     fast_finish: true

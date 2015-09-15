@@ -1,13 +1,16 @@
 #!/bin/sh
 
 # Extract SDK version from tiapp.xml
-TI_SDK_VERSION=$(grep tiapp.xml -e "<sdk-version>" | grep -oE "\d+.\d+.\d+")
+TI_SDK_VERSION=$(grep tiapp.xml -e "<sdk-version>" | grep -oE "\d+\.\d+\.\d+")
 echo "======== Titanium SDK version: $TI_SDK_VERSION"
 
 # Extract the build url
 TI_SDK_FILE=$(curl http://builds.appcelerator.com/mobile/master/index.json -X GET | \
-    grep -oE "mobilesdk-${TI_SDK_VERSION}.\w+-osx.zip" | tail -1)
+    grep -oE "mobilesdk-$TI_SDK_VERSION.\w+-osx.zip" | tail -1)
+TI_SDK_BUILD_VERSION=$(echo $TI_SDK_FILE | grep -oE "\d+\.\d+\.\d+\.?(GA)?\.\w+")
+sed -i "" "/<sdk-version>.*<\/sdk-version>/s/[0-9].[0-9].[0-9].\(GA\)*/$TI_SDK_BUILD_VERSION/g" tiapp.xml
 echo "======== Titanium SDK file: $TI_SDK_FILE"
+echo "======== Titanium SDK build version: $TI_SDK_BUILD_VERSION"
 
 # Install the sdk
 echo "======== Install Titanium SDK"
